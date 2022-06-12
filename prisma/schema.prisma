@@ -1,0 +1,71 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Client {
+  id        Int      @id @default(autoincrement())
+  name      String
+  lastName  String   @map("last_name")
+  email     String
+  cpf       String   @unique
+  birthDate DateTime @map("birth_date")
+  passport  String?
+  Ticket    Ticket[]
+
+  @@map("clients")
+}
+
+model Flight {
+  id                   Int      @id @default(autoincrement())
+  arrivalTime          String   @map("arrival_time")
+  departureTime        String   @map("departure_time")
+  numberSeats          Int      @map("number_seats")
+  ticketPrice          String   @map("ticket_price")
+  airline              String
+  cabin                String
+  isInternational      Boolean  @map("is_international")
+  idAirportOrigin      Int      @map("airport_origin")
+  airportOrigin        Airport  @relation("origin", fields: [idAirportOrigin], references: [id])
+  idAirportDestination Int      @map("airport_destination")
+  airportDestination   Airport  @relation("destiny", fields: [idAirportDestination], references: [id])
+  Tickets              Ticket[]
+
+  @@map("flights")
+}
+
+model DestinationAirports {
+  time String
+  date DateTime
+
+  @@id([time, date])
+  @@map("destination_airpots")
+}
+
+model Airport {
+  id            Int      @id @default(autoincrement())
+  name          String
+  city          String
+  state         String
+  country       String
+  FlightOrigin  Flight[] @relation("origin")
+  FlightDestiny Flight[] @relation("destiny")
+
+  @@map("airports")
+}
+
+model Ticket {
+  id           Int      @id @default(autoincrement())
+  seatNumber   String   @map("seat_number")
+  purchaseDate DateTime @map("purchase_date")
+  idFlight     Int      @map("id_flight")
+  flight       Flight?  @relation(fields: [idFlight], references: [id])
+  idClient     Int      @map("id_client")
+  client       Client?  @relation(fields: [idClient], references: [id])
+
+  @@map("tickets")
+}
