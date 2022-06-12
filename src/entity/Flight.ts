@@ -1,7 +1,7 @@
 import { Airport } from './Airport';
 
 export class Flight {
-  public id: number;
+  public readonly id: number;
   public arrivalTime: string;
   public departureTime: string;
   public numberSeats: number;

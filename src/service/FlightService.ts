@@ -40,7 +40,15 @@ class FlightService {
   public async findAll(): Promise<Flight[]> {
     try {
       const allFlights = await prisma.flight.findMany({
-        include: {
+        select: {
+          id:true,
+          arrivalTime:true,
+          departureTime:true,
+          numberSeats:true,
+          ticketPrice:true,
+          airline:true,
+          cabin:true,
+          isInternational:true,
           airportOrigin: true,
           airportDestination: true,
         },
@@ -74,9 +82,17 @@ class FlightService {
           numberSeats:{
             not:0
           }
-        },include:{
-          airportOrigin:true,
-          airportDestination:true
+        },select:{
+          id:true,
+          arrivalTime:true,
+          departureTime:true,
+          numberSeats:true,
+          ticketPrice:true,
+          airline:true,
+          cabin:true,
+          isInternational:true,
+          airportOrigin: true,
+          airportDestination: true,
         }
       })
       return allFlights;

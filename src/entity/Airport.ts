@@ -1,5 +1,5 @@
 export class Airport {
-  public id: number;
+  public readonly id: number;
   public name: string;
   public city: string;
   public state: string;

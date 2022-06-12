@@ -29,10 +29,30 @@ class TicketService {
       if (
         (flight.isInternational && client.passport == "") ||
         client.passport == null
-      )
+      ) {
         throw new Error(
           "Não é possivel concluir compra, cliente não possui passaporte"
         );
+      }
+
+      if (flight.numberSeats <= 0)
+        throw new Error("Infelizmente os assentos estão esgotados");
+
+      const othersSeats = await prisma.ticket.findMany({
+        where: {
+          seatNumber,
+        },
+      });
+      if (othersSeats) throw new Error("Este assento já está ocupado!");
+
+      await prisma.flight.update({
+        where: {
+          id: idFlight,
+        },
+        data: {
+          numberSeats: flight.numberSeats - 1,
+        },
+      });
 
       await prisma.ticket
         .create({
@@ -52,15 +72,18 @@ class TicketService {
   public async findAll(): Promise<Ticket[]> {
     try {
       const allTickets = await prisma.ticket.findMany({
-        include: {
+        select: {
+          id:true,
+          seatNumber:true,
+          purchaseDate:true,
           client: true,
           flight: true,
         },
       });
       const formattedAllTickets: Ticket[] = allTickets;
       allTickets.map((ticket, i) => {
-        formattedAllTickets[i].purchaseDate =
-          ticket.purchaseDate.toLocaleDateString("pt-BR", { timeZone: "UTC" });
+        formattedAllTickets[i].purchaseDate = ticket.purchaseDate.toLocaleDateString("pt-BR", { timeZone: "UTC" });
+        formattedAllTickets[i].client.birthDate = ticket.client.birthDate.toLocaleDateString("pt-BR", { timeZone: "UTC" });
       });
       return formattedAllTickets;
     } catch (e: any) {
@@ -73,7 +96,10 @@ class TicketService {
       where: {
         id,
       },
-      include: {
+      select: {
+        id:true,
+        seatNumber:true,
+        purchaseDate:true,
         client: true,
         flight: {
           include: {
@@ -90,7 +116,7 @@ class TicketService {
       "pt-BR",
       { timeZone: "UTC" }
     );
-    formattedTicket.client = await this.formatClientBirthDate(ticket.idClient);
+    formattedTicket.client = await this.formatClientBirthDate(ticket.client.id);
     return formattedTicket;
   }
 
@@ -118,11 +144,30 @@ class TicketService {
       if (
         (flight.isInternational && client.passport == "") ||
         client.passport == null
-      )
+      ) {
         throw new Error(
           "Não é possivel concluir compra, cliente não possui passaporte"
         );
+      }
 
+      if (flight.numberSeats <= 0)
+        throw new Error("Infelizmente os assentos estão esgotados");
+
+      const othersSeats = await prisma.ticket.findMany({
+        where: {
+          seatNumber,
+        },
+      });
+      if (othersSeats) throw new Error("Este assento já está ocupado!");
+
+      await prisma.flight.update({
+        where: {
+          id: idFlight,
+        },
+        data: {
+          numberSeats: flight.numberSeats - 1,
+        },
+      });
       const newTicket = await prisma.ticket
         .update({
           where: {

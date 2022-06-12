@@ -17,6 +17,10 @@ class AirportService {
         })
         .then();
     } catch (e: any) {
+      if(!name) throw new Error("Nome de Aeroporto obrigatório")
+      if(!city) throw new Error("Cidade do Aeroporto obrigatório")
+      if(!state) throw new Error("Estado do Aeroporto obrigatório")
+      if(!country) throw new Error("País do Aeroporto obrigatório")
       throw new Error(e);
     }
   }

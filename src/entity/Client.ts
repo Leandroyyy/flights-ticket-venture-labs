@@ -1,7 +1,7 @@
 export type HandleDate = string | Date;
 
 export class Client {
-  public id: number;
+  public readonly id: number;
   public name: string;
   public lastName: string;
   public email: string;
