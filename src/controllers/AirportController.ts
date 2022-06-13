@@ -1,7 +1,7 @@
 import { Response } from "express";
 import { Request } from "express";
 import AirportService from "../service/AirportService";
-import { Airport } from "./../entity/Airport";
+import { Airport } from "../entities/Airport";
 
 class AirpotController {
   public async findAll(req: Request, res: Response): Promise<Response> {

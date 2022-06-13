@@ -1,23 +1,19 @@
-import ClientController from "./controllers/ClientController";
 import { Router } from "express";
 import AirportController from "./controllers/AirportController";
 import FlightController from "./controllers/FlightController";
 import TicketController from "./controllers/TicketController";
+import { airportRoutes } from "./routes/AirportRoutes";
+import { clientRoutes } from "./routes/ClientRoutes";
 
 const routes = Router();
 
-//Clients Routes
-routes.get("/client", ClientController.findAll);
-routes.get("/client/:id", ClientController.findOneById);
-routes.get("/client/:id/ticket", ClientController.findTickets) 
-routes.post("/client", ClientController.create);
-routes.put("/client/:id", ClientController.update);
-routes.delete("/client/:id", ClientController.remove);
+//All Clients Routes
+routes.use(clientRoutes)
 
 //Airports Routes
-routes.get("/airport", AirportController.findAll);
+routes.use(airportRoutes)
+
 routes.get("/airport/:id", AirportController.findOneById);
-routes.post("/airport", AirportController.create);
 routes.put("/airport/:id", AirportController.update);
 routes.delete("/airport/:id", AirportController.remove);
 

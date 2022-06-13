@@ -1,6 +1,6 @@
 import { Response } from "express";
 import { Request } from "express";
-import { Ticket } from "../entity/Ticket";
+import { Ticket } from "../entities/Ticket";
 import TicketService from "../service/TicketService";
 
 class TicketController {

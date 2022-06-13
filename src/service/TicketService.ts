@@ -1,6 +1,6 @@
-import { Client } from "./../entity/Client";
+import { Client } from "../entities/Client";
 import { prisma } from "../database/prismaClient";
-import { Ticket } from "./../entity/Ticket";
+import { Ticket } from "../entities/Ticket";
 import ptBR from "date-fns/locale/pt-BR";
 import parse from "date-fns/parse";
 

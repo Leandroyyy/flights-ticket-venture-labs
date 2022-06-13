@@ -1,7 +1,7 @@
 import { Response } from "express";
 import { Request } from "express";
 import FlightService from "../service/FlightService";
-import { Flight } from "./../entity/Flight";
+import { Flight } from "../entities/Flight";
 
 class FlightController {
   public async findAll(req: Request, res: Response): Promise<Response> {

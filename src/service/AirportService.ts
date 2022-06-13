@@ -1,38 +1,8 @@
 import { prisma } from "../database/prismaClient";
-import { Airport } from "./../entity/Airport";
+import { Airport } from "../entities/Airport";
 
 class AirportService {
   
-  public async create(airport: Airport): Promise<void> {
-    const { name, city, state, country } = airport;
-    try {
-      await prisma.airport
-        .create({
-          data: {
-            name,
-            city,
-            state,
-            country,
-          },
-        })
-        .then();
-    } catch (e: any) {
-      if(!name) throw new Error("Nome de Aeroporto obrigatório")
-      if(!city) throw new Error("Cidade do Aeroporto obrigatório")
-      if(!state) throw new Error("Estado do Aeroporto obrigatório")
-      if(!country) throw new Error("País do Aeroporto obrigatório")
-      throw new Error(e);
-    }
-  }
-
-  public async findAll(): Promise<Airport[]> {
-    try {
-      const allAirpots = await prisma.airport.findMany();
-      return allAirpots;
-    } catch (e: any) {
-      throw new Error(e);
-    }
-  }
 
   public async findOne(id: number): Promise<Airport> {
     const airport = await prisma.airport.findUnique({

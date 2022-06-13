@@ -1,6 +1,6 @@
 import { prisma } from "../database/prismaClient";
-import { Ticket } from "../entity/Ticket";
-import { Flight } from "./../entity/Flight";
+import { Ticket } from "../entities/Ticket";
+import { Flight } from "../entities/Flight";
 
 class FlightService {
   public async create(flight: Flight): Promise<void> {
