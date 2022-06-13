@@ -13,7 +13,7 @@ export class CreateAirportService {
     if (!name || name.trim() == "") throw new Error("Nome obrigatório");
     if (!city || city.trim() == "") throw new Error("Cidade obrigatória");
     if (!state || state.trim() == "") throw new Error("Estado obrigatório");
-    if (!country || country == "") throw new Error("País obrigatório");
+    if (!country || country.trim() == "") throw new Error("País obrigatório");
 
     await this.airportRepository.save(airport);
   }

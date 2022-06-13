@@ -49,8 +49,7 @@ class FlightService {
           airline:true,
           cabin:true,
           isInternational:true,
-          airportOrigin: true,
-          airportDestination: true,
+          
         },
       });
       return allFlights;

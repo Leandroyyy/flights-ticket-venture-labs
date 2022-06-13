@@ -29,10 +29,10 @@ model Flight {
   airline              String
   cabin                String
   isInternational      Boolean  @map("is_international")
-  idAirportOrigin      Int      @map("airport_origin")
-  airportOrigin        Airport  @relation("origin", fields: [idAirportOrigin], references: [id])
-  idAirportDestination Int      @map("airport_destination")
-  airportDestination   Airport  @relation("destiny", fields: [idAirportDestination], references: [id])
+  idAirportOrigin      Int?     @map("airport_origin")
+  airportOrigin        Airport?  @relation("origin", fields: [idAirportOrigin], references: [id])
+  idAirportDestination Int?      @map("airport_destination")
+  airportDestination   Airport?  @relation("destiny", fields: [idAirportDestination], references: [id])
   Tickets              Ticket[]
 
   @@map("flights")

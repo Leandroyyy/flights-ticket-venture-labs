@@ -20,13 +20,3 @@ export function transformClientDateToString(data:Client):Client{
 
     return formattedClientBirthDate;
 }
-
-export function transformClientTicketDateToString(data:Ticket[]):Ticket[]{
-    const formattedClientsTicket:Ticket[] = data;
-    data.map((ticket,i)=>{
-        if(typeof ticket.purchaseDate == 'string') return
-        formattedClientsTicket[i].purchaseDate = ticket.purchaseDate.toLocaleDateString('pt-BR', {timeZone: 'UTC'})
-    })
-
-    return formattedClientsTicket
-}

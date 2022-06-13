@@ -5,19 +5,19 @@ import { IClientsRepository } from "./../IClientRepository";
 
 export class PrismaClientsRepository implements IClientsRepository {
   async save(client: Client): Promise<void> {
-    await prisma.client.create({ data: client }).then();
+    await prisma.client.create({ data: client });
   }
 
   async findAll(): Promise<Client[]> {
-    return await prisma.client.findMany().then();
+    return await prisma.client.findMany();
   }
 
   async findById(id: number): Promise<Client> {
-    return prisma.client.findUnique({ where: { id } }).then();
+    return prisma.client.findUnique({ where: { id } });
   }
 
   async findByCpf(cpf: string): Promise<Client> {
-    return prisma.client.findUnique({ where: { cpf } }).then();
+    return prisma.client.findUnique({ where: { cpf } });
   }
 
   async findAllTickets(id: number): Promise<Ticket[]> {
@@ -40,7 +40,7 @@ export class PrismaClientsRepository implements IClientsRepository {
   }
 
   async update(id: number, client: Client): Promise<Client> {
-    return await prisma.client.update({ where: { id }, data: client }).then();
+    return await prisma.client.update({ where: { id }, data: client });
   }
 
   async remove(id: number): Promise<void> {

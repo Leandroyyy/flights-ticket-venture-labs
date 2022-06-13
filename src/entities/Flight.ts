@@ -14,25 +14,7 @@ export class Flight {
   public airportOrigin?:Airport;
   public airportDestination?:Airport;
 
-  constructor(
-    arrivalTime: string,
-    departureTime: string,
-    numberSeats: number,
-    ticketPrice: string,
-    airline: string,
-    cabin: string,
-    isInternational: boolean,
-    idAirportOrigin: number,
-    idAirportDestination: number,
-  ) {
-    this.arrivalTime = arrivalTime;
-    this.departureTime = departureTime;
-    this.numberSeats = numberSeats;
-    this.ticketPrice = ticketPrice;
-    this.airline = airline;
-    this.cabin = cabin;
-    this.isInternational = isInternational
-    this.idAirportOrigin = idAirportOrigin;
-    this.idAirportDestination = idAirportDestination;  
+  constructor(props: Omit<Flight,'id'>, id?:number ) {
+    Object.assign(this,props)
   }
 }
