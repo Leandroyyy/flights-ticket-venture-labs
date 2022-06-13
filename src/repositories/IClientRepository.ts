@@ -9,5 +9,5 @@ export interface IClientsRepository{
     findByCpf(cpf:string): Promise<Client>;
     findAllTickets(id:number):Promise<Ticket[]>;
     update(id:number,client:Client):Promise<Client>;
-    // remove(id:number):Promise<void>;
+    remove(id:number):Promise<void>;
 }

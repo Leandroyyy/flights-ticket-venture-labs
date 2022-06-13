@@ -13,7 +13,6 @@ import { updateClientController } from '../service/clientService/UpdateClient';
 const clientRoutes = Router()
 
 
-
 clientRoutes.get("/client/:id", (request,response)=>{
     return findClientByIdController.handle(request,response);
 })

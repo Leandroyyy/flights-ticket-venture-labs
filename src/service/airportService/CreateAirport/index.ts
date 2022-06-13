@@ -1,11 +1,11 @@
 import { CreateAirportService } from './CreateAirportService';
 import { CreateAirportController } from './CreateAirportController';
-import { PrismaAirportRepository } from '../../../repositories/implementations/PrismaAirportRepository';
+import { PrismaAirportsRepository } from '../../../repositories/implementations/PrismaAirportsRepository';
 
-const prismaAirportRepository = new PrismaAirportRepository();
+const prismaAirportsRepository = new PrismaAirportsRepository();
 
 const createAirportService = new CreateAirportService(
-    prismaAirportRepository
+    prismaAirportsRepository
 )
 
 const createAirportController = new CreateAirportController(createAirportService);

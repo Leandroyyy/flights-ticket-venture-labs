@@ -13,10 +13,6 @@ routes.use(clientRoutes)
 //Airports Routes
 routes.use(airportRoutes)
 
-routes.get("/airport/:id", AirportController.findOneById);
-routes.put("/airport/:id", AirportController.update);
-routes.delete("/airport/:id", AirportController.remove);
-
 //Flights Routes
 routes.get("/flights", FlightController.findAll)
 routes.get("/flights/available", FlightController.findAllAvailable)

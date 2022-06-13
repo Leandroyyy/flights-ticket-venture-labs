@@ -1,5 +1,5 @@
 
 
-export interface IDeleteByIdResponseDTO{
+export interface IDeleteClientByIdResponseDTO{
     id:number; 
 }
