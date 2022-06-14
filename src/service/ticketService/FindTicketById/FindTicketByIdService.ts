@@ -1,5 +1,6 @@
 import { Ticket } from '../../../entities/Ticket';
 import { ITicketRepository } from '../../../repositories/ITicketRepository';
+import { transformClientDateToString } from '../validations/TransformTicketDateToString';
 
 export class FindTicketByIdService{
     constructor(
@@ -9,8 +10,8 @@ export class FindTicketByIdService{
     async execute(id:number):Promise<Ticket>{
         const ticket = await this.ticketRepository.findById(id);
 
-        if(!ticket) throw new Error(`Aeroporto do id:${id} não encontrado`)
+        if(!ticket) throw new Error(`Passagem do id:${id} não encontrado`)
 
-        return ticket;
+        return transformClientDateToString(ticket);
     }
 }

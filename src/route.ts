@@ -19,7 +19,5 @@ routes.use(flightsRoutes);
 //Tickets Routes
 routes.use(ticketsRoutes);
 
-routes.put("/ticket/:id", TicketController.update)
-routes.delete("/ticket/:id", TicketController.remove)
 
 export { routes };

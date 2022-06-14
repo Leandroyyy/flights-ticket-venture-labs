@@ -1,4 +1,3 @@
-
 import { Ticket } from "../../../entities/Ticket";
 import { IClientsRepository } from "../../../repositories/IClientRepository";
 import { IFlightRepository } from "../../../repositories/IFlightRepository";
@@ -17,10 +16,13 @@ export class CreateTicketService {
 
     const { seatNumber, idFlight, idClient } = ticket;
 
-
     const flight = await this.flightRepository.findById(idFlight);
 
+    if(!flight) throw new Error("Voo não existe");
+
     const client = await this.clientRepository.findById(idClient);
+
+    if(!client) throw new Error("Cliente não existe")
 
     if (
       (flight.isInternational && client.passport.trim() == "") ||
@@ -34,13 +36,16 @@ export class CreateTicketService {
     if (flight.numberSeats <= 0)
       throw new Error("Infelizmente os assentos estão esgotados");
 
-      const isSeatAvailable = await this.ticketRepository.findSeat(seatNumber, idFlight);
-      
-    if (isSeatAvailable.length != 0){
+    const isSeatAvailable = await this.ticketRepository.findSeat(
+      seatNumber,
+      idFlight
+    );
+
+    if (isSeatAvailable.length != 0) {
       throw new Error("Este assento já está ocupado!");
     }
-    
-    flight.numberSeats-= 1;
+
+    flight.numberSeats -= 1;
 
     this.flightRepository.update(idFlight, flight);
 
