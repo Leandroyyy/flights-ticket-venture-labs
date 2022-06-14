@@ -1,7 +1,10 @@
 import { app } from "./app";
+import dotenv from 'dotenv';
 
-const PORT = process.env.PORT;
+dotenv.config();
+
+const PORT = process.env.PORT
 
 app.listen(PORT, ()=>{
-    console.log('Servidor iniciado na porta 3000')
+    console.log('Servidor iniciado na porta: '+ PORT)
 })
