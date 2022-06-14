@@ -11,7 +11,7 @@ export class CreateTicketService {
     private clientRepository: IClientsRepository
   ) {}
 
-  async execute(data: ICreateTicketRequestDTO) {
+  async execute(data: ICreateTicketRequestDTO):Promise<void> {
     const ticket = new Ticket(data);
 
     const { seatNumber, idFlight, idClient } = ticket;

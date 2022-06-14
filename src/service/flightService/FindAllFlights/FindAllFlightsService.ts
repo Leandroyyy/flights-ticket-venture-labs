@@ -1,10 +1,13 @@
 import { Flight } from "../../../entities/Flight";
 import { IFlightRepository } from "../../../repositories/IFlightRepository";
+import { transformFlightsDateToString } from "../validations/TransformClientDateToString";
 
 export class FindAllFlightsService {
   constructor(private flightRepository: IFlightRepository) {}
 
   async execute(): Promise<Flight[]> {
-    return await this.flightRepository.findAll();
+    const flights = await this.flightRepository.findAll();
+
+    return transformFlightsDateToString(flights)
   }
 }

@@ -5,7 +5,7 @@ import { IUpdateAirportRequestDTO } from "./UpdateAirportDTO";
 export class UpdateAirportService {
   constructor(private airportRepository: IAirportRepository) {}
 
-  async execute(id: number, data: IUpdateAirportRequestDTO) {
+  async execute(id: number, data: IUpdateAirportRequestDTO):Promise<void> {
     const airport = new Airport(data);
 
     const { name, city, state, country } = airport;

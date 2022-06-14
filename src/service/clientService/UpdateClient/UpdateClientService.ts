@@ -13,7 +13,7 @@ export class UpdateClientService{
         private clientsRepository:IClientsRepository
     ){}
 
-    async execute(id:number,data:IUpdateClientRequestDTO){
+    async execute(id:number,data:IUpdateClientRequestDTO):Promise<void>{
 
         const cpfAlreadyExists = await this.clientsRepository.findByCpf(data.cpf)
         

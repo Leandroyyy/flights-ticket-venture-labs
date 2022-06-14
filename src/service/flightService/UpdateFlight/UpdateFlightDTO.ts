@@ -1,5 +1,7 @@
 export interface IUpdateFlightRequestDTO {
+  arrivalDay:string,
   arrivalTime: string;
+  departureDay:string;
   departureTime: string;
   numberSeats: number;
   ticketPrice: string;

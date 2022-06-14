@@ -20,3 +20,22 @@ export function transformClientDateToString(data:Client):Client{
 
     return formattedClientBirthDate;
 }
+
+
+export function transformClientTicketDateToString(data:Ticket[]):Ticket[]{
+    const formattedTicketDate:Ticket[] = data
+
+    data.map((ticket,i)=>{
+        if(typeof ticket.purchaseDate == 'string') return
+        formattedTicketDate[i].purchaseDate = ticket.purchaseDate.toLocaleDateString('pt-BR',{timeZone:'UTC'})
+
+        if(typeof ticket.flight.arrivalDay== 'string') return
+        formattedTicketDate[i].flight.arrivalDay =  ticket.flight.arrivalDay.toLocaleDateString('pt-BR',{timeZone:'UTC'})
+
+        if(typeof ticket.flight.departureDay== 'string') return
+        formattedTicketDate[i].flight.departureDay =  ticket.flight.departureDay.toLocaleDateString('pt-BR',{timeZone:'UTC'})
+
+    })
+    
+    return formattedTicketDate;
+}

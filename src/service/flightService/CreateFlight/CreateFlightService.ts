@@ -1,3 +1,5 @@
+import ptBR from "date-fns/locale/pt-BR";
+import parse from "date-fns/parse";
 import { Flight } from "./../../../entities/Flight";
 import { IFlightRepository } from "./../../../repositories/IFlightRepository";
 import { ICreateFlightRequestDTO } from "./CreateFlightDTO";
@@ -5,11 +7,13 @@ import { ICreateFlightRequestDTO } from "./CreateFlightDTO";
 export class CreateFlightService {
   constructor(private flightRepository: IFlightRepository) {}
 
-  async execute(data: ICreateFlightRequestDTO) {
+  async execute(data: ICreateFlightRequestDTO):Promise<void> {
     const flight = new Flight(data);
 
     const {
+      arrivalDay,
       arrivalTime,
+      departureDay,
       departureTime,
       numberSeats,
       ticketPrice,
@@ -20,8 +24,14 @@ export class CreateFlightService {
       idAirportDestination,
     } = flight;
 
-    if (!arrivalTime || arrivalTime.trim() == "") throw new Error("Tempo de chegada obrigatório");
-    if (!departureTime || departureTime.trim() == "") throw new Error("Tempo de saída obrigatória");
+
+    const formattedArrivalDay = parse(String(arrivalDay),"dd/MM/yyyy", new Date(),{locale:ptBR})
+    const formattedDepartureDay = parse(String(departureDay),"dd/MM/yyyy", new Date(),{locale:ptBR})
+
+    if (!formattedArrivalDay) throw new Error("Informe o dia de chegada");
+    if (!arrivalTime || arrivalTime.trim() == "") throw new Error("Informe o horário de chegada");
+    if (!formattedDepartureDay) throw new Error("Informe o dia de saída");
+    if (!departureTime || departureTime.trim() == "") throw new Error("Informe o horário de saída");
     if (!numberSeats || numberSeats <= 0 ) throw new Error("Informe a quantidade de assentos");
     if (!ticketPrice || ticketPrice.trim() == "") throw new Error("Informe o valor da passagem");
     if (!airline || airline.trim() == "") throw new Error("Informe a companhia aérea");
@@ -31,6 +41,11 @@ export class CreateFlightService {
     if (idAirportOrigin == idAirportDestination) throw new Error("O aeroporto de origem não pode ser o mesmo de destino");
     if (idAirportDestination <= 0) throw new Error("Informe o id do aeroporto de Destino");
 
+    flight.arrivalDay = formattedArrivalDay;
+    
+    flight.departureDay = formattedDepartureDay;
+
+    console.log(flight.departureDay.toLocaleDateString())
 
     await this.flightRepository.save(flight);
   }

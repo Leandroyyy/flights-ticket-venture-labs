@@ -1,5 +1,6 @@
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
+  previewFeatures = ["filterJson"]
 }
 
 datasource db {
@@ -22,7 +23,9 @@ model Client {
 
 model Flight {
   id                   Int      @id @default(autoincrement())
+  arrivalDay           DateTime   @map("arrival_day")
   arrivalTime          String   @map("arrival_time")
+  departureDay         DateTime   @map("departure_day")
   departureTime        String   @map("departure_time")
   numberSeats          Int      @map("number_seats")
   ticketPrice          String   @map("ticket_price")
@@ -30,20 +33,12 @@ model Flight {
   cabin                String
   isInternational      Boolean  @map("is_international")
   idAirportOrigin      Int?     @map("airport_origin")
-  airportOrigin        Airport?  @relation("origin", fields: [idAirportOrigin], references: [id])
-  idAirportDestination Int?      @map("airport_destination")
-  airportDestination   Airport?  @relation("destiny", fields: [idAirportDestination], references: [id])
+  airportOrigin        Airport? @relation("origin", fields: [idAirportOrigin], references: [id])
+  idAirportDestination Int?     @map("airport_destination")
+  airportDestination   Airport? @relation("destiny", fields: [idAirportDestination], references: [id])
   Tickets              Ticket[]
 
   @@map("flights")
-}
-
-model DestinationAirports {
-  time String
-  date DateTime
-
-  @@id([time, date])
-  @@map("destination_airpots")
 }
 
 model Airport {

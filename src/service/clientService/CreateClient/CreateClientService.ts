@@ -12,7 +12,7 @@ export class CreateClientService{
         private clientsRepository:IClientsRepository
     ){}
 
-    async execute(data:ICreateClientRequestDTO){
+    async execute(data:ICreateClientRequestDTO):Promise<void>{
         const cpfAlreadyExists = await this.clientsRepository.findByCpf(data.cpf)
 
         if(cpfAlreadyExists) throw new Error("CPF já existente");
@@ -28,7 +28,7 @@ export class CreateClientService{
         if (!name || name.trim() == "") throw new Error("Nome obrigatório");
         if (!lastName || lastName.trim() == "") throw new Error("Sobrenome obrigatório");
         if (!email || email.trim() == "") throw new Error("Email obrigatório");
-        if (!birthDate || birthDate == "") throw new Error("Data de nascimento obrigatório");
+        if (!formattedBirthDate) throw new Error("Data de nascimento obrigatório");
         if (!validateCpf(cpf)) throw new Error("Cpf Inválido");  
         client.birthDate = formattedBirthDate
 

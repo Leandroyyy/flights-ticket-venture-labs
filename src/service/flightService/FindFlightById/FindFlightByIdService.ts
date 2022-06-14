@@ -1,4 +1,5 @@
 import { Flight } from '../../../entities/Flight';
+import { transformFlightDateToString } from '../validations/TransformClientDateToString';
 import { IFlightRepository } from './../../../repositories/IFlightRepository';
 
 
@@ -12,6 +13,6 @@ export class FindFlightByIdService{
 
         if(!flight) throw new Error(`Voo do id:${id} não encontrado`)
 
-        return flight;
+        return transformFlightDateToString(flight);
     }
 }

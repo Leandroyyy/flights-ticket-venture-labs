@@ -1,6 +1,6 @@
 import { Ticket } from "../../../entities/Ticket";
 import { IClientsRepository } from "../../../repositories/IClientRepository";
-import { transformTicketDateToString } from "../../ticketService/validations/TransformTicketDateToString";
+import { transformClientTicketDateToString } from "../validations/TransformClientDateToString";
 
 export class FindClientTicketsService{
     constructor(
@@ -12,6 +12,6 @@ export class FindClientTicketsService{
 
         if(!tickets) throw new Error(`Cliente não possui nenhuma passagem comprada`)
 
-        return transformTicketDateToString(tickets);
+        return transformClientTicketDateToString(tickets);
     }
 }

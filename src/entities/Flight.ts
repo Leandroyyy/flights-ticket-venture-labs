@@ -1,8 +1,12 @@
+import { HandleDate } from './Client';
 import { Airport } from './Airport';
+
 
 export class Flight {
   public readonly id: number;
+  public arrivalDay:HandleDate;
   public arrivalTime: string;
+  public departureDay:HandleDate;
   public departureTime: string;
   public numberSeats: number;
   public ticketPrice: string;
@@ -17,4 +21,5 @@ export class Flight {
   constructor(props: Omit<Flight,'id'>, id?:number ) {
     Object.assign(this,props)
   }
+
 }

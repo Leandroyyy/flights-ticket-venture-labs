@@ -6,7 +6,9 @@ import { IFlightRepository } from "../IFlightRepository";
 export class PrismaFlightsRepository implements IFlightRepository {
   async save(flight: Flight): Promise<void> {
     const {
+      arrivalDay,
       arrivalTime,
+      departureDay,
       departureTime,
       idAirportOrigin,
       idAirportDestination,
@@ -18,7 +20,9 @@ export class PrismaFlightsRepository implements IFlightRepository {
     } = flight;
     await prisma.flight.create({
       data: {
+        arrivalDay,
         arrivalTime,
+        departureDay,
         departureTime,
         numberSeats,
         ticketPrice,
@@ -35,7 +39,9 @@ export class PrismaFlightsRepository implements IFlightRepository {
     return await prisma.flight.findMany({
       select: {
         id: true,
+        arrivalDay:true,
         arrivalTime: true,
+        departureDay:true,
         departureTime: true,
         numberSeats: true,
         ticketPrice: true,
@@ -55,7 +61,9 @@ export class PrismaFlightsRepository implements IFlightRepository {
       },
       select: {
         id: true,
+        arrivalDay:true,
         arrivalTime: true,
+        departureDay:true,
         departureTime: true,
         numberSeats: true,
         ticketPrice: true,
@@ -77,7 +85,9 @@ export class PrismaFlightsRepository implements IFlightRepository {
       },
       select: {
         id: true,
+        arrivalDay:true,
         arrivalTime: true,
+        departureDay:true,
         departureTime: true,
         numberSeats: true,
         ticketPrice: true,
@@ -95,12 +105,20 @@ export class PrismaFlightsRepository implements IFlightRepository {
       where: {
         idFlight: id,
       },
+      select:{
+        id:true,
+        seatNumber:true,
+        purchaseDate:true,
+        client:true
+      }
     });
   }
 
   async update(id: number, flight: Flight): Promise<Flight> {
     const {
+      arrivalDay,
       arrivalTime,
+      departureDay,
       departureTime,
       idAirportOrigin,
       idAirportDestination,
@@ -115,7 +133,9 @@ export class PrismaFlightsRepository implements IFlightRepository {
         id,
       },
       data: {
+        arrivalDay,
         arrivalTime,
+        departureDay,
         departureTime,
         numberSeats,
         ticketPrice,

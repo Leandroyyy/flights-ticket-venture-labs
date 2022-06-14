@@ -7,7 +7,9 @@ export class CreateFlightController {
 
   async handle(request: Request, response: Response): Promise<Response> {
     const {
+      arrivalDay,
       arrivalTime,
+      departureDay,
       departureTime,
       numberSeats,
       ticketPrice,
@@ -19,7 +21,9 @@ export class CreateFlightController {
     } = request.body;
     try {
       await this.createFlightService.execute({
+        arrivalDay,
         arrivalTime,
+        departureDay,
         departureTime,
         numberSeats,
         ticketPrice,
