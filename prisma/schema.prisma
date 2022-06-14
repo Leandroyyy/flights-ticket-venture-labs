@@ -61,7 +61,7 @@ model Airport {
 model Ticket {
   id           Int      @id @default(autoincrement())
   seatNumber   String   @map("seat_number")
-  purchaseDate DateTime @map("purchase_date")
+  purchaseDate DateTime @default(now()) @map("purchase_date")
   idFlight     Int      @map("id_flight")
   flight       Flight?  @relation(fields: [idFlight], references: [id])
   idClient     Int      @map("id_client")

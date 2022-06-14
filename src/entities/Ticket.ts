@@ -6,17 +6,13 @@ export class Ticket{
 
     public readonly id:number;
     public seatNumber:string;
-    public purchaseDate:HandleDate;
-    public idFlight?:number;
+    public purchaseDate?:HandleDate;
     public idClient?:number;
+    public idFlight?:number;
     public client?:Client;
     public flight?:Flight;
 
-    constructor(seatNumber:string,purchaseDate:HandleDate,idFlight:number,idClient:number){
-        this.seatNumber = seatNumber;
-        this.purchaseDate = purchaseDate;
-        this.idFlight = idFlight;
-        this.idClient = idClient;
+    constructor(props: Omit<Ticket,'id'>, id?:number ) {
+        Object.assign(this,props)
     }
-
 }

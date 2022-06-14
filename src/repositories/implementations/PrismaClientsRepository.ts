@@ -20,6 +20,14 @@ export class PrismaClientsRepository implements IClientsRepository {
     return prisma.client.findUnique({ where: { cpf } });
   }
 
+  async findPassport(passport: string): Promise<Client[]> {
+    return prisma.client.findMany({
+      where:{
+        passport
+      }
+    })
+  }
+
   async findAllTickets(id: number): Promise<Ticket[]> {
     return await prisma.ticket.findMany({
       where: {

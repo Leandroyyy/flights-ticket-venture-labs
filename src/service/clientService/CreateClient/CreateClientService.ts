@@ -17,6 +17,10 @@ export class CreateClientService{
 
         if(cpfAlreadyExists) throw new Error("CPF já existente");
 
+        const passportAlreadyExists = await this.clientsRepository.findPassport(data.passport);
+
+        if(passportAlreadyExists.length != 0) throw Error("Passaporte já existente")
+
         const client = new Client(data);
         const { name, lastName, email, cpf, birthDate, passport } = client;
         const formattedBirthDate = parse(String(birthDate),"dd/MM/yyyy", new Date(),{locale:ptBR})
