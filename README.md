@@ -5,7 +5,7 @@
 
 
 ## Utilizado Typescript , Prisma como ORM e Mysql como banco de dados
-
+## Design Pattern utilizado SOLID
 
 #### Para usar o seu banco de dados entre no .env e coloque sua credenciais
 
