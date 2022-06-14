@@ -1,5 +1,7 @@
 import { app } from "./app";
 
-app.listen(3000, ()=>{
+const PORT = process.env.PORT;
+
+app.listen(PORT, ()=>{
     console.log('Servidor iniciado na porta 3000')
 })
