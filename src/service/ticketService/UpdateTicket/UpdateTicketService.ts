@@ -11,7 +11,7 @@ export class UpdateTicketService {
     private clientRepository: IClientsRepository
   ) {}
 
-  async execute(id: number, data: IUpdateTicketRequestDTO) {
+  async execute(id: number, data: IUpdateTicketRequestDTO):Promise<void> {
     const ticket = new Ticket(data);
 
     const { seatNumber, idFlight, idClient } = ticket;

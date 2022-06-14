@@ -1,4 +1,3 @@
-import { Ticket } from "../../../entities/Ticket";
 import { IFlightRepository } from "../../../repositories/IFlightRepository";
 import { ITicketRepository } from "../../../repositories/ITicketRepository";
 
