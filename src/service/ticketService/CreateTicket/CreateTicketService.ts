@@ -1,8 +1,9 @@
-import { IClientsRepository } from "./../../../repositories/IClientRepository";
-import { IFlightRepository } from "./../../../repositories/IFlightRepository";
-import { ICreateTicketRequestDTO } from "./CreateTicketDTO";
-import { ITicketRepository } from "./../../../repositories/ITicketRepository";
+
 import { Ticket } from "../../../entities/Ticket";
+import { IClientsRepository } from "../../../repositories/IClientRepository";
+import { IFlightRepository } from "../../../repositories/IFlightRepository";
+import { ITicketRepository } from "../../../repositories/ITicketRepository";
+import { ICreateTicketRequestDTO } from "./CreateTicketDTO";
 
 export class CreateTicketService {
   constructor(

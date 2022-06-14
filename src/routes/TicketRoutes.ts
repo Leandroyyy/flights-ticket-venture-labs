@@ -1,6 +1,6 @@
 import { Router } from 'express';
-import { createTicketController } from '../service/ticketService/CreateTicket';
-import { findAllTicketsController } from '../service/ticketService/FindAllTickets';
+import { createTicketController } from '../service/CreateTicket';
+import { findAllTicketsController } from '../service/flightService/FindAllTickets';
 import { findTicketByIdController } from '../service/ticketService/FindTicketById';
 
 

@@ -1,6 +1,6 @@
-import { PrismaClientsRepository } from './../../../repositories/implementations/PrismaClientsRepository';
-import { PrismaFlightsRepository } from './../../../repositories/implementations/PrismaFlightsRepository';
-import { PrismaTicketRepository } from './../../../repositories/implementations/PrismaTicketRepository';
+import { PrismaClientsRepository } from '../../../repositories/implementations/PrismaClientsRepository';
+import { PrismaFlightsRepository } from '../../../repositories/implementations/PrismaFlightsRepository';
+import { PrismaTicketRepository } from '../../../repositories/implementations/PrismaTicketRepository';
 import { CreateTicketController } from './CreateTicketController';
 import { CreateTicketService } from './CreateTicketService';
 

@@ -2,7 +2,7 @@ import { PrismaAirportsRepository } from "../../../repositories/implementations/
 import { FindAirportByIdController } from "./FindAirportByIdController";
 import { FindAirportByIdService } from "./FindAirportByIdService";
 
-i
+
 const prismaAirportsRepository = new PrismaAirportsRepository();
 
 const findAirportByIdService = new FindAirportByIdService(

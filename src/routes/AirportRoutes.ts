@@ -2,7 +2,7 @@ import { Router } from 'express';
 import { createAirportController } from '../service/airportService/CreateAirport';
 import { deleteAirportController } from '../service/airportService/DeleteAirport';
 import { findAllAirportsController } from '../service/airportService/FindAllAirports';
-import { findAirportByIdController } from '../service/airportService/FindByIdAirport';
+import { findAirportByIdController } from '../service/airportService/FindAirportById';
 import { updateAirportController } from '../service/airportService/UpdateAirport';
 
 const airportRoutes = Router()
