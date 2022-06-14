@@ -1,6 +1,6 @@
 import { Ticket } from "../../../entities/Ticket";
 import { IFlightRepository } from "../../../repositories/IFlightRepository";
-import { transformTicketDateToString } from "../../ticketService/validations/transformTicketDateToString";
+import { transformTicketDateToString } from "../../ticketService/validations/TransformTicketDateToString";
 
 export class FindAllFlightTicketsService {
   constructor(private flightRepository: IFlightRepository) {}

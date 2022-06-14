@@ -2,16 +2,16 @@ import { Ticket } from "../../../entities/Ticket";
 import { IClientsRepository } from "../../../repositories/IClientRepository";
 import { IFlightRepository } from "../../../repositories/IFlightRepository";
 import { ITicketRepository } from "../../../repositories/ITicketRepository";
-import { ICreateTicketRequestDTO } from "./CreateTicketDTO";
+import { IUpdateTicketRequestDTO } from "./UpdateTicketDTO";
 
-export class CreateTicketService {
+export class UpdateTicketService {
   constructor(
     private ticketRepository: ITicketRepository,
     private flightRepository: IFlightRepository,
     private clientRepository: IClientsRepository
   ) {}
 
-  async execute(data: ICreateTicketRequestDTO) {
+  async execute(id: number, data: IUpdateTicketRequestDTO) {
     const ticket = new Ticket(data);
 
     const { seatNumber, idFlight, idClient } = ticket;
@@ -24,10 +24,7 @@ export class CreateTicketService {
 
     if(!client) throw new Error("Cliente não existe")
 
-    if (
-      (flight.isInternational && client.passport.trim() == "") ||
-      client.passport == null
-    ) {
+    if (flight.isInternational && client.passport == null || client.passport.trim() == "") {
       throw new Error(
         "Não é possivel concluir passagem internacional, cliente não possui passaporte!"
       );
@@ -47,8 +44,8 @@ export class CreateTicketService {
 
     flight.numberSeats -= 1;
 
-    await this.flightRepository.update(idFlight, flight);
+    this.flightRepository.update(idFlight, flight);
 
-    await this.ticketRepository.save(ticket);
+    await this.ticketRepository.update(id,ticket);
   }
 }

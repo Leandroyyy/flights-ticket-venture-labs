@@ -1,6 +1,6 @@
 import { Ticket } from "../../../entities/Ticket";
 import { IClientsRepository } from "../../../repositories/IClientRepository";
-import { transformTicketDateToString } from "../../ticketService/validations/transformTicketDateToString";
+import { transformTicketDateToString } from "../../ticketService/validations/TransformTicketDateToString";
 
 export class FindClientTicketsService{
     constructor(

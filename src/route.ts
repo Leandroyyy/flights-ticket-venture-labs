@@ -1,5 +1,4 @@
 import { Router } from "express";
-import TicketController from "./controllers/TicketController";
 import { airportRoutes } from "./routes/AirportRoutes";
 import { clientRoutes } from "./routes/ClientRoutes";
 import { flightsRoutes } from "./routes/FlightRoutes";
@@ -18,6 +17,5 @@ routes.use(flightsRoutes);
 
 //Tickets Routes
 routes.use(ticketsRoutes);
-
 
 export { routes };

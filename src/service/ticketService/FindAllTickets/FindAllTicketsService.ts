@@ -1,5 +1,5 @@
 import { Ticket } from '../../../entities/Ticket';
-import { transformTicketDateToString } from '../validations/transformTicketDateToString';
+import { transformTicketDateToString } from '../validations/TransformTicketDateToString';
 import { ITicketRepository } from './../../../repositories/ITicketRepository';
 
 export class FindAllTicketsService{
