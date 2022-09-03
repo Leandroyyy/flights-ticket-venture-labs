@@ -4,7 +4,6 @@
   "description": "api para aeroportos",
   "main": "index.js",
   "scripts": {
-    "test": "mocha",
     "start": "tsnd --transpile-only --respawn --ignore-watch node_modules src/server.ts"
   },
   "author": "leandro cavallari",
