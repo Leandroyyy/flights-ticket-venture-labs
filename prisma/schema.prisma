@@ -4,8 +4,8 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
-  url      = "file:./clients.db"
+  provider = "mysql"
+  url      = "mysql://leandroyyy:Queijo10@boskodb.mysql.database.azure.com:3306/bosko"
 }
 
 model Client {
